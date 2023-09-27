@@ -19,4 +19,17 @@ public class Product {
     public void setTitle(String title) {
         this.title = title;
     }
+
+    public Product(String title, int cost) {
+        this.cost = cost;
+        this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "title='" + title + '\'' +
+                ", cost=" + cost +
+                '}';
+    }
 }
