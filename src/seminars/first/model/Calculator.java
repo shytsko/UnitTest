@@ -7,11 +7,18 @@ public class Calculator {
         switch (operator) {
             case '+':
                 result = firstOperand + secondOperand;
+                if ((firstOperand > 0 && secondOperand > 0 && result < 0) ||
+                        (firstOperand < 0 && secondOperand < 0 && result > 0)) {
+                    throw new ArithmeticException("Integer overflow");
+                }
                 break;
             case '-':
-                result = firstOperand - secondOperand;
+                result = Calculator.calculation(firstOperand, -secondOperand, '+');
                 break;
             case '*':
+                if (Math.abs(secondOperand) > Integer.MAX_VALUE / Math.abs(firstOperand)) {
+                    throw new ArithmeticException("Integer overflow");
+                }
                 result = firstOperand * secondOperand;
                 break;
             case '/':

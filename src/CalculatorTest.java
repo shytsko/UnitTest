@@ -40,16 +40,74 @@ public class CalculatorTest {
 
         // Проверка базового функционала с целыми числами, с использованием утверждений AssertJ:
         assertThat(Calculator.calculation(2, 6, '+')).isEqualTo(8);
+        assertThat(Calculator.calculation(-2, -6, '+')).isEqualTo(-8);
+        assertThat(Calculator.calculation(2, -6, '+')).isEqualTo(-4);
+        assertThat(Calculator.calculation(-2, 6, '+')).isEqualTo(4);
         assertThat(Calculator.calculation(2, 2, '-')).isEqualTo(0);
+        assertThat(Calculator.calculation(-2, -2, '-')).isEqualTo(0);
+        assertThat(Calculator.calculation(-2, 2, '-')).isEqualTo(-4);
+        assertThat(Calculator.calculation(2, -2, '-')).isEqualTo(4);
         assertThat(Calculator.calculation(2, 7, '*')).isEqualTo(14);
+        assertThat(Calculator.calculation(-2, -7, '*')).isEqualTo(14);
+        assertThat(Calculator.calculation(-2, 7, '*')).isEqualTo(-14);
+        assertThat(Calculator.calculation(2, -7, '*')).isEqualTo(-14);
         assertThat(Calculator.calculation(100, 50, '/')).isEqualTo(2);
+        assertThat(Calculator.calculation(-100, -50, '/')).isEqualTo(2);
+        assertThat(Calculator.calculation(100, -50, '/')).isEqualTo(-2);
+        assertThat(Calculator.calculation(-100, 50, '/')).isEqualTo(-2);
 
         // Проверка ожидаемого исключения, с использованием утверждений AssertJ:
         assertThatThrownBy(() ->
                 Calculator.calculation(8, 4, '_')
         ).isInstanceOf(IllegalStateException.class);
 
-        System.out.println(Calculator.calculation(2_147_483_647, 1, '+')); // integer overflow
-        System.out.println(Calculator.squareRootExtraction(169));
+
+        assertThatThrownBy(() ->
+                Calculator.calculation(Integer.MAX_VALUE, 1, '+')
+        ).isInstanceOf(ArithmeticException.class);
+
+        assertThatThrownBy(() ->
+                Calculator.calculation(Integer.MAX_VALUE, -1, '-')
+        ).isInstanceOf(ArithmeticException.class);
+
+        assertThatThrownBy(() ->
+                Calculator.calculation(Integer.MIN_VALUE, 1, '-')
+        ).isInstanceOf(ArithmeticException.class);
+
+        assertThatThrownBy(() ->
+                Calculator.calculation(Integer.MIN_VALUE, -1, '+')
+        ).isInstanceOf(ArithmeticException.class);
+
+        assertThatThrownBy(() ->
+                Calculator.calculation(Integer.MAX_VALUE, 2, '*')
+        ).isInstanceOf(ArithmeticException.class);
+
+        assertThatThrownBy(() ->
+                Calculator.calculation(Integer.MAX_VALUE, -2, '*')
+        ).isInstanceOf(ArithmeticException.class);
+
+        assertThatThrownBy(() ->
+                Calculator.calculation(Integer.MIN_VALUE, 2, '*')
+        ).isInstanceOf(ArithmeticException.class);
+
+        assertThatThrownBy(() ->
+                Calculator.calculation(Integer.MIN_VALUE, -2, '*')
+        ).isInstanceOf(ArithmeticException.class);
+
+
+//        System.out.println(Calculator.calculation(2_147_483_647, 1, '+')); // integer overflow
+//        System.out.println(Calculator.calculation(-2_147_483_648, 1, '-')); // integer overflow
+
+        assertThat(Calculator.squareRootExtraction(169)).isEqualTo(13);
+
+        assertThatThrownBy(() ->
+                Calculator.squareRootExtraction(0)
+        ).isInstanceOf(ArithmeticException.class);
+
+        assertThatThrownBy(() ->
+                Calculator.squareRootExtraction(-169)
+        ).isInstanceOf(ArithmeticException.class);
+
+//        System.out.println(Calculator.squareRootExtraction(169));
     }
 }
