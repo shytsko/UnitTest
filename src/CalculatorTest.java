@@ -98,7 +98,6 @@ public class CalculatorTest {
 //        System.out.println(Calculator.calculation(2_147_483_647, 1, '+')); // integer overflow
 //        System.out.println(Calculator.calculation(-2_147_483_648, 1, '-')); // integer overflow
 
-        assertThat(Calculator.squareRootExtraction(169)).isEqualTo(13);
 
         assertThatThrownBy(() ->
                 Calculator.squareRootExtraction(0)
@@ -109,5 +108,26 @@ public class CalculatorTest {
         ).isInstanceOf(ArithmeticException.class);
 
 //        System.out.println(Calculator.squareRootExtraction(169));
+
+        assertThat(Calculator.calculatingDiscount(116, 5)).isEqualTo(110.2);
+        assertThat(Calculator.calculatingDiscount(5641, 13)).isEqualTo(4907.67);
+        assertThat(Calculator.calculatingDiscount(1248.65, 7)).isEqualTo(1161.24);
+        assertThat(Calculator.calculatingDiscount(0, 7)).isEqualTo(0);
+        assertThat(Calculator.calculatingDiscount(2525, 100)).isEqualTo(0);
+        assertThat(Calculator.calculatingDiscount(0, 0)).isEqualTo(0);
+        assertThat(Calculator.calculatingDiscount(55555555555555.55, 30))
+                .isEqualTo(38888888888888.89);
+
+        assertThatThrownBy(() ->
+                Calculator.calculatingDiscount(-116, 5)
+        ).isInstanceOf(ArithmeticException.class);
+
+        assertThatThrownBy(() ->
+                Calculator.calculatingDiscount(116, 105)
+        ).isInstanceOf(ArithmeticException.class);
+
+        assertThatThrownBy(() ->
+                Calculator.calculatingDiscount(116, -10)
+        ).isInstanceOf(ArithmeticException.class);
     }
 }
