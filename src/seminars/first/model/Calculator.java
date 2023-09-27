@@ -60,6 +60,12 @@ public class Calculator {
      * @return возвращает сумму покупки с учетом скидки
      */
     public static double calculatingDiscount(double purchaseAmount, int discountAmount) {
-        return 0;
+        if (purchaseAmount < 0) {
+            throw new ArithmeticException("The amount cannot be negative");
+        }
+        if (discountAmount < 0 || discountAmount > 100) {
+            throw new ArithmeticException("The discount should be from 0 to 100%");
+        }
+        return Math.round((100 - discountAmount) * purchaseAmount) / 100.0;
     }
 }
