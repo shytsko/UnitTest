@@ -15,5 +15,8 @@ class Product:
             return False
         if not isinstance(other, self.__class__):
             return False
-        return all((self.key == other.key, self.name == other.name, self.price == other.price,
+        return all((self.pk == other.pk, self.name == other.name, self.price == other.price,
                     self.quantity == other.quantity))
+
+    def __str__(self):
+        return self.name
