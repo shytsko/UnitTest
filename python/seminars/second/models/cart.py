@@ -79,7 +79,7 @@ class Cart:
         elif self._has_contain_product(product) and self._get_contain_product(product).quantity == 1:
             self.cart_items.remove(self._get_contain_product(product))
 
-        time.sleep(0.07)
+        # time.sleep(2)
 
         self.recalculate()
 
