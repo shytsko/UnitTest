@@ -50,6 +50,8 @@ class Cart:
 
         self.shop.product_shop[product.pk - 1].quantity -= 1
 
+        # time.sleep(0.071)
+
     def _has_contain_product(self, product: Product) -> bool:
         for item in self.cart_items:
             if item.pk == product.pk:

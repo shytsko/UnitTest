@@ -154,6 +154,8 @@ class TestShop:
     # <br> 2. Тест повторяется 10 раз
     # <br> 3. Установлен таймаут на выполнение теста 70 Миллисекунд (unit = TimeUnit.MILLISECONDS)
     # <br> 4. После проверки работоспособности теста, его нужно выключить
-    def test_price_cart_is_correct_calculated_ext(self, cart):
+    @pytest.mark.parametrize("i", range(10))
+    @pytest.mark.timeout(0.07)
+    def test_price_cart_is_correct_calculated_ext(self, cart, i):
         add_product_pk = 8
         cart.add_product(add_product_pk)
