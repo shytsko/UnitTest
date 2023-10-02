@@ -1,0 +1,7 @@
+
+
+coverage run -m pytest -v .\tests\seminars\thirt\test_seminar3.py
+
+coverage report -m
+
+coverage html
