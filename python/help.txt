@@ -1,4 +1,6 @@
+pytest --cov
 
+pytest --cov=seminars .\tests\seminars\thirt\test_seminar3.py
 
 coverage run -m pytest -v .\tests\seminars\thirt\test_seminar3.py
 
