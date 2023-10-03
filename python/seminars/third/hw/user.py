@@ -25,3 +25,7 @@ class User:
     @property
     def is_admin(self):
         return self._is_admin
+
+    @property
+    def name(self):
+        return self._name
