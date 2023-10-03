@@ -1,5 +1,4 @@
-from seminars.third.hw.user import User
-from seminars.third.hw.user_repository import UserRepository
+from seminars.third.hw.user import User, UserRepository
 
 
 class TestUser:

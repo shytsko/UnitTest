@@ -1,3 +1,12 @@
+# Разработайте класс User с методом аутентификации по логину и паролю. Метод должен возвращать true, если
+# введенные логин и пароль корректны, иначе false. Протестируйте все методы
+# Добавьте класс UserRepository для управления пользователями. В этот класс должен быть включен метод
+# addUser, который добавляет пользователя в систему, если он прошел аутентификацию. Покройте тестами новую
+# функциональность
+# Добавьте функцию в класс UserRepository, которая разлогинивает всех пользователей,
+# кроме администраторов. Для этого, вам потребуется расширить класс User новым свойством,
+# указывающим, обладает ли пользователь админскими правами. Протестируйте данную функцию.
+
 import hashlib
 import os
 
@@ -29,3 +38,19 @@ class User:
     @property
     def name(self):
         return self._name
+
+
+class UserRepository:
+    def __init__(self):
+        self._data: dict[User] = dict()
+
+    def add_user(self, user: User):
+        self._data[user.name] = user
+
+    def find_by_name(self, username: str) -> bool:
+        return username in self._data
+
+    def logout_not_admin(self):
+        for name in tuple(self._data.keys()):
+            if not self._data[name].is_admin:
+                self._data.pop(name)
