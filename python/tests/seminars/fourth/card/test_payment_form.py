@@ -18,5 +18,5 @@ class TestPaymentForm:
         when(mock_card).charge(...).thenReturn(None)
         form = PaymentForm(mock_card)
         form.pay(1)
-        verify(mock_card, atleast=1).charge(...)
+        verify(mock_card, times=1).charge(1)
 
