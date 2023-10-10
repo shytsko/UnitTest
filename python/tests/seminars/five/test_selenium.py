@@ -4,7 +4,22 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 
-def test_selenium():
+def test_google_search():
+    driver = webdriver.Chrome()
+    driver.get("http://www.google.com/")
+    elem = driver.find_element(By.NAME, "q")
+    elem.clear()
+    elem.send_keys("selenium")
+    elem.submit()
+
+    result = driver.find_element(By.ID, "rso")
+    assert "https://www.selenium.dev" in result.text
+
+    time.sleep(3)
+    driver.close()
+
+
+def test_saucedemo_login():
     driver = webdriver.Chrome()
     driver.get("https://www.saucedemo.com/")
 
